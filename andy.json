@@ -1,6 +1,6 @@
 {
     "name": "andy",
 
-    "model": "gemini-2.0-flash"
+    "model": "openrouter/anthropic/claude-3.5-sonnet"
 
 }
