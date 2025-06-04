@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+
+  windows:
+    image: dockurr/windows:latest
+    container_name: windows
+    environment:
+      VERSION: "10"              # Windows Version
+      USERNAME: "MASTER"         # RDP Username
+      PASSWORD: "admin@123"      # RDP Password
+      RAM_SIZE: "4G"             # RAM Allocation
+      CPU_CORES: "4"             # CPU Core Allocation
+      DISK_SIZE: "400G"          # Primary Disk Size
+      DISK2_SIZE: "100G"         # Secondary Disk Size
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8006:8006"              # Web/VNC access (depends on dockurr/windows setup)
+      - "3389:3389/tcp"          # RDP TCP
+      - "3389:3389/udp"          # RDP UDP
+    stop_grace_period: 2m
+    restart: unless-stopped
